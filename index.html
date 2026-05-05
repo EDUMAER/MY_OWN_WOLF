@@ -114,6 +114,30 @@
   .step-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.05em; margin-bottom: 0.7rem; }
   .step-desc { font-size: 0.72rem; line-height: 1.8; opacity: 0.5; letter-spacing: 0.03em; }
 
+  /* GALERÍA */
+  .galeria { padding: 5rem 3rem; border-top: 1px solid var(--gray2); }
+  .galeria-filters { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .filter-btn { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; background: transparent; color: var(--white); border: 1px solid var(--gray2); padding: 0.5rem 1.2rem; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover, .filter-btn.active { border-color: var(--pink); color: var(--pink); }
+  .galeria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .galeria-item { position: relative; overflow: hidden; cursor: pointer; background: var(--gray); }
+  .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .galeria-item:hover img { transform: scale(1.04); }
+  .galeria-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
+  .galeria-item:hover .galeria-item-overlay { opacity: 1; }
+  .galeria-cat { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 0.3rem; }
+  .galeria-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.05em; }
+  .galeria-item.hidden { display: none; }
+
+  /* INSTAGRAM */
+  .instagram { padding: 5rem 3rem; border-top: 1px solid var(--gray2); text-align: center; background: var(--gray); }
+  .ig-handle { display: inline-flex; align-items: center; gap: 1rem; margin-top: 2rem; border: 1px solid var(--gray2); padding: 1.2rem 2.5rem; transition: border-color 0.2s, transform 0.2s; text-decoration: none; color: var(--white); }
+  .ig-handle:hover { border-color: var(--pink); transform: translateY(-2px); }
+  .ig-icon { width: 22px; height: 22px; fill: var(--pink); flex-shrink: 0; }
+  .ig-text { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .ig-text span { color: var(--pink); }
+  .ig-sub { font-size: 0.7rem; opacity: 0.4; letter-spacing: 0.08em; margin-top: 1rem; }
+
   /* CTA FINAL */
   .cta-section { padding: 8rem 3rem; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--gray2); }
   .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,45,120,0.1) 0%, transparent 70%); pointer-events: none; }
@@ -140,7 +164,9 @@
     .products-grid { grid-template-columns: 1fr 1fr; }
     .proceso { padding: 4rem 1.5rem; }
     .proceso-steps { grid-template-columns: 1fr 1fr; }
-    .cta-section { padding: 5rem 1.5rem; }
+    .galeria { padding: 4rem 1.5rem; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .instagram { padding: 4rem 1.5rem; }
     footer { padding: 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
   }
 </style>
@@ -269,6 +295,60 @@
   </div>
 </section>
 
+<!-- GALERÍA -->
+<section class="galeria" id="coleccion">
+  <div class="section-header">
+    <h2 class="section-title">Galería de diseños</h2>
+    <a href="https://www.instagram.com/my_own_wolf_/" target="_blank" class="section-link">Ver más en IG →</a>
+  </div>
+  <div class="galeria-filters">
+    <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filter-btn" onclick="filtrar('pussy-twin-bros', this)">Pussy Twin Bros</button>
+    <button class="filter-btn" onclick="filtrar('bombareli-crew', this)">Bombareli Crew</button>
+    <button class="filter-btn" onclick="filtrar('pelotudo-extremo', this)">Pelotudo Extremo</button>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item" data-cat="pussy-twin-bros">
+      <img src="diseno1.png" alt="Pussy Twin Bros">
+      <div class="galeria-item-overlay">
+        <div class="galeria-cat">Pussy Twin Bros</div>
+        <div class="galeria-name">TWIN BROTHERS</div>
+      </div>
+    </div>
+    <div class="galeria-item" data-cat="bombareli-crew">
+      <img src="diseno2.png" alt="Bombareli Crew">
+      <div class="galeria-item-overlay">
+        <div class="galeria-cat">Bombareli Crew</div>
+        <div class="galeria-name">BOMBARELI CREW</div>
+      </div>
+    </div>
+    <div class="galeria-item" data-cat="pelotudo-extremo">
+      <img src="diseno3.png" alt="Pelotudo Extremo">
+      <div class="galeria-item-overlay">
+        <div class="galeria-cat">Pelotudo Extremo</div>
+        <div class="galeria-name">PELOTUDO EXTREMO</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="instagram">
+  <div style="text-align:center;">
+    <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--pink); margin-bottom: 1rem;">// Síguenos</p>
+    <h2 class="section-title">Estamos en Instagram</h2>
+  </div>
+  <div style="text-align:center;">
+    <a href="https://www.instagram.com/my_own_wolf_/" target="_blank" class="ig-handle">
+      <svg class="ig-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      <div class="ig-text">@<span>my_own_wolf_</span></div>
+    </a>
+    <p class="ig-sub">Nuevos diseños cada semana</p>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <section class="cta-section">
   <div class="cta-bg"></div>
@@ -290,5 +370,19 @@
   <span>ES · EU</span>
 </footer>
 
+</body>
+<script>
+function filtrar(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.galeria-item').forEach(item => {
+    if (cat === 'todos' || item.dataset.cat === cat) {
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+}
+</script>
 </body>
 </html>
