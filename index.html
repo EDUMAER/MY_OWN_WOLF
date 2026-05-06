@@ -560,7 +560,7 @@ function cerrarContacto() {
 }
 
 // Formulario de contacto
-function enviarFormulario() {
+async function enviarFormulario() {
   const nombre = document.getElementById('f-nombre').value.trim();
   const email = document.getElementById('f-email').value.trim();
   const tipo = document.getElementById('f-tipo').value;
@@ -569,9 +569,32 @@ function enviarFormulario() {
     alert('Por favor rellena todos los campos.');
     return;
   }
-  const mailto = `mailto:contact@myownwolf.com?subject=Consulta de diseño — ${encodeURIComponent(tipo)}&body=Nombre: ${encodeURIComponent(nombre)}%0AEmail: ${encodeURIComponent(email)}%0ATipo de diseño: ${encodeURIComponent(tipo)}%0A%0AMensaje:%0A${encodeURIComponent(mensaje)}`;
-  window.location.href = mailto;
-  document.getElementById('form-ok').style.display = 'block';
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/meenzjwv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ nombre, email, tipo, mensaje })
+    });
+    if (res.ok) {
+      document.getElementById('form-ok').style.display = 'block';
+      document.getElementById('f-nombre').value = '';
+      document.getElementById('f-email').value = '';
+      document.getElementById('f-tipo').selectedIndex = 0;
+      document.getElementById('f-mensaje').value = '';
+      btn.textContent = 'Enviado ✓';
+    } else {
+      alert('Hubo un error al enviar. Inténtalo de nuevo.');
+      btn.textContent = 'Enviar mensaje';
+      btn.disabled = false;
+    }
+  } catch(e) {
+    alert('Hubo un error al enviar. Inténtalo de nuevo.');
+    btn.textContent = 'Enviar mensaje';
+    btn.disabled = false;
+  }
 }
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
