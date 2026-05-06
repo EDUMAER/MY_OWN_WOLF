@@ -174,12 +174,12 @@
   .spec-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); opacity: 0.8; padding-top: 0.1rem; }
   .spec-val { font-size: 0.72rem; line-height: 1.7; opacity: 0.75; }
   .base-sublabel { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pink); margin-bottom: 1rem; }
-  .color-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
-  .color-swatch { aspect-ratio: 1; cursor: pointer; position: relative; border: 2px solid transparent; transition: transform 0.15s, border-color 0.15s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.25rem; }
-  .color-swatch:hover { transform: scale(1.1); }
-  .color-swatch.active { border: 2px solid var(--pink) !important; transform: scale(1.1); }
-  .swatch-label { font-size: 0; position: absolute; bottom: -1.4rem; left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--black); color: var(--white); padding: 0.15rem 0.4rem; font-size: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 10; }
-  .color-swatch:hover .swatch-label { opacity: 1; }
+  .color-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.5rem; margin-bottom: 2rem; }
+  .color-swatch { aspect-ratio: 1; cursor: pointer; position: relative; border: 2px solid transparent; transition: transform 0.15s, border-color 0.15s; display: flex; align-items: flex-end; justify-content: center; }
+  .color-swatch:hover { transform: scale(1.1); z-index: 10; }
+  .color-swatch.active { border: 2px solid var(--pink) !important; transform: scale(1.1); z-index: 10; }
+  .swatch-label { display: none; position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--black); color: var(--white); border: 1px solid var(--gray2); padding: 0.2rem 0.5rem; font-size: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; pointer-events: none; z-index: 20; }
+  .color-swatch:hover .swatch-label { display: block; }
   .color-selected-info { display: flex; align-items: center; margin-top: 0.8rem; padding: 0.75rem 1rem; background: var(--gray2); }
   .talla-grid { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .talla-btn { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; padding: 0.6rem 1rem; border: 1px solid var(--gray2); background: transparent; color: var(--white); cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
