@@ -174,11 +174,12 @@
   .spec-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); opacity: 0.8; padding-top: 0.1rem; }
   .spec-val { font-size: 0.72rem; line-height: 1.7; opacity: 0.75; }
   .base-sublabel { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pink); margin-bottom: 1rem; }
-  .color-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.6rem; margin-bottom: 1rem; }
-  .color-swatch { aspect-ratio: 1; cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.15s, border-color 0.15s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.3rem; }
-  .color-swatch:hover { transform: scale(1.08); }
-  .color-swatch.active { border: 2px solid var(--pink) !important; transform: scale(1.08); }
-  .swatch-label { font-size: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); text-shadow: 0 1px 3px rgba(0,0,0,0.8); text-align: center; }
+  .color-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
+  .color-swatch { aspect-ratio: 1; cursor: pointer; position: relative; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.15s, border-color 0.15s; overflow: hidden; display: flex; flex-direction: column; }
+  .color-swatch img { width: 100%; flex: 1; object-fit: cover; display: block; }
+  .color-swatch:hover { transform: scale(1.06); border-color: rgba(255,255,255,0.3); }
+  .color-swatch.active { border: 2px solid var(--pink) !important; transform: scale(1.06); }
+  .swatch-label { font-size: 0.45rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); text-align: center; padding: 0.2rem 0.1rem; background: rgba(0,0,0,0.7); line-height: 1.2; }
   .color-selected-info { display: flex; align-items: center; margin-top: 0.8rem; padding: 0.75rem 1rem; background: var(--gray2); }
   .talla-grid { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .talla-btn { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; padding: 0.6rem 1rem; border: 1px solid var(--gray2); background: transparent; color: var(--white); cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
@@ -248,7 +249,7 @@
     .contacto-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .base-selector { padding: 4rem 1.5rem; }
     .base-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .color-grid { grid-template-columns: repeat(4, 1fr); }
+    .color-grid { grid-template-columns: repeat(5, 1fr); }
     footer { padding: 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
   }
 </style>
@@ -405,23 +406,56 @@
     <!-- Selector de color -->
     <div class="base-color-wrap">
       <p class="base-sublabel">// Selecciona un color</p>
+      <p style="font-size:0.6rem;opacity:0.4;letter-spacing:0.08em;margin-bottom:1rem">Stock España: entrega 24h &nbsp;·&nbsp; Stock Alemania: 3-5 días</p>
       <div class="color-grid" id="colorGrid">
-        <div class="color-swatch active" data-color="Negro" data-hex="#0a0a0a" onclick="selectColor(this)" style="background:#0a0a0a;border:2px solid var(--pink)"><span class="swatch-label">Negro</span></div>
-        <div class="color-swatch" data-color="Blanco" data-hex="#f5f5f5" onclick="selectColor(this)" style="background:#f5f5f5"><span class="swatch-label" style="color:#111">Blanco</span></div>
-        <div class="color-swatch" data-color="Marino" data-hex="#1a1f3a" onclick="selectColor(this)" style="background:#1a1f3a"><span class="swatch-label">Marino</span></div>
-        <div class="color-swatch" data-color="Rojo" data-hex="#c0392b" onclick="selectColor(this)" style="background:#c0392b"><span class="swatch-label">Rojo</span></div>
-        <div class="color-swatch" data-color="Gris oscuro" data-hex="#3a3a3a" onclick="selectColor(this)" style="background:#3a3a3a"><span class="swatch-label">Gris oscuro</span></div>
-        <div class="color-swatch" data-color="Gris deportivo" data-hex="#9e9e9e" onclick="selectColor(this)" style="background:#9e9e9e"><span class="swatch-label">Gris dep.</span></div>
-        <div class="color-swatch" data-color="Verde botella" data-hex="#2d5a27" onclick="selectColor(this)" style="background:#2d5a27"><span class="swatch-label">Verde</span></div>
-        <div class="color-swatch" data-color="Azul royal" data-hex="#2255a4" onclick="selectColor(this)" style="background:#2255a4"><span class="swatch-label">Royal</span></div>
-        <div class="color-swatch" data-color="Morado" data-hex="#6a1b9a" onclick="selectColor(this)" style="background:#6a1b9a"><span class="swatch-label">Morado</span></div>
-        <div class="color-swatch" data-color="Arena" data-hex="#c8a96e" onclick="selectColor(this)" style="background:#c8a96e"><span class="swatch-label">Arena</span></div>
-        <div class="color-swatch" data-color="Naranja" data-hex="#e65100" onclick="selectColor(this)" style="background:#e65100"><span class="swatch-label">Naranja</span></div>
-        <div class="color-swatch" data-color="Rosa" data-hex="#e91e8c" onclick="selectColor(this)" style="background:#e91e8c"><span class="swatch-label">Rosa</span></div>
+        <div class="color-swatch active" data-color="Black" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_101.jpg" alt="Black"><span class="swatch-label">Black</span></div>
+        <div class="color-swatch" data-color="White" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_000.jpg" alt="White"><span class="swatch-label">White</span></div>
+        <div class="color-swatch" data-color="Navy" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_200.jpg" alt="Navy"><span class="swatch-label">Navy</span></div>
+        <div class="color-swatch" data-color="Royal" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_300.jpg" alt="Royal"><span class="swatch-label">Royal</span></div>
+        <div class="color-swatch" data-color="Red" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_400.jpg" alt="Red"><span class="swatch-label">Red</span></div>
+        <div class="color-swatch" data-color="Natural" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_008.jpg" alt="Natural"><span class="swatch-label">Natural</span></div>
+        <div class="color-swatch" data-color="Sport Grey" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_125_sport-grey.jpg" alt="Sport Grey"><span class="swatch-label">Sport Grey</span></div>
+        <div class="color-swatch" data-color="Dark Heather" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_126.jpg" alt="Dark Heather"><span class="swatch-label">Dark Heather</span></div>
+        <div class="color-swatch" data-color="Charcoal" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_130.jpg" alt="Charcoal"><span class="swatch-label">Charcoal</span></div>
+        <div class="color-swatch" data-color="Graphite Heather" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_131.jpg" alt="Graphite Heather"><span class="swatch-label">Graphite H.</span></div>
+        <div class="color-swatch" data-color="Indigo Blue" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_318.jpg" alt="Indigo Blue"><span class="swatch-label">Indigo Blue</span></div>
+        <div class="color-swatch" data-color="Light Blue" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_321.jpg" alt="Light Blue"><span class="swatch-label">Light Blue</span></div>
+        <div class="color-swatch" data-color="Carolina Blue" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_322.jpg" alt="Carolina Blue"><span class="swatch-label">Carolina B.</span></div>
+        <div class="color-swatch" data-color="Sapphire" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_329.jpg" alt="Sapphire"><span class="swatch-label">Sapphire</span></div>
+        <div class="color-swatch" data-color="Purple" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_349.jpg" alt="Purple"><span class="swatch-label">Purple</span></div>
+        <div class="color-swatch" data-color="Cherry Red" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_401.jpg" alt="Cherry Red"><span class="swatch-label">Cherry Red</span></div>
+        <div class="color-swatch" data-color="Cardinal Red" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_402_cardinal-red.jpg" alt="Cardinal Red"><span class="swatch-label">Cardinal R.</span></div>
+        <div class="color-swatch" data-color="Antique Cherry Red" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_406.jpg" alt="Antique Cherry Red"><span class="swatch-label">Antique Ch.</span></div>
+        <div class="color-swatch" data-color="Orange" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_410_orange.jpg" alt="Orange"><span class="swatch-label">Orange</span></div>
+        <div class="color-swatch" data-color="Azalea" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_425.jpg" alt="Azalea"><span class="swatch-label">Azalea</span></div>
+        <div class="color-swatch" data-color="Heliconia" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_431.jpg" alt="Heliconia"><span class="swatch-label">Heliconia</span></div>
+        <div class="color-swatch" data-color="Maroon" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_446.jpg" alt="Maroon"><span class="swatch-label">Maroon</span></div>
+        <div class="color-swatch" data-color="Military Green" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_506.jpg" alt="Military Green"><span class="swatch-label">Military G.</span></div>
+        <div class="color-swatch" data-color="Irish Green" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_509.jpg" alt="Irish Green"><span class="swatch-label">Irish Green</span></div>
+        <div class="color-swatch" data-color="Mint Green" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_514.jpg" alt="Mint Green"><span class="swatch-label">Mint Green</span></div>
+        <div class="color-swatch" data-color="Kiwi" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_520.jpg" alt="Kiwi"><span class="swatch-label">Kiwi</span></div>
+        <div class="color-swatch" data-color="Jade Dome" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_533.jpg" alt="Jade Dome"><span class="swatch-label">Jade Dome</span></div>
+        <div class="color-swatch" data-color="Forest Green" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_541.jpg" alt="Forest Green"><span class="swatch-label">Forest G.</span></div>
+        <div class="color-swatch" data-color="Daisy" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_602.jpg" alt="Daisy"><span class="swatch-label">Daisy</span></div>
+        <div class="color-swatch" data-color="Dark Chocolate" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_701.jpg" alt="Dark Chocolate"><span class="swatch-label">Dark Choc.</span></div>
+        <div class="color-swatch" data-color="Sand" data-stock="España" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_741.jpg" alt="Sand"><span class="swatch-label">Sand</span></div>
+        <div class="color-swatch" data-color="Off White" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_001.jpg" alt="Off White"><span class="swatch-label">Off White</span></div>
+        <div class="color-swatch" data-color="Heather Navy" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_201.jpg" alt="Heather Navy"><span class="swatch-label">Heather N.</span></div>
+        <div class="color-swatch" data-color="Tropical Blue" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_313.jpg" alt="Tropical Blue"><span class="swatch-label">Tropical B.</span></div>
+        <div class="color-swatch" data-color="Sky" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_320.jpg" alt="Sky"><span class="swatch-label">Sky</span></div>
+        <div class="color-swatch" data-color="Paragon" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_326.jpg" alt="Paragon"><span class="swatch-label">Paragon</span></div>
+        <div class="color-swatch" data-color="Antique Sapphire" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_330.jpg" alt="Antique Sapphire"><span class="swatch-label">Antique S.</span></div>
+        <div class="color-swatch" data-color="Heather Royal" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_356.jpg" alt="Heather Royal"><span class="swatch-label">Heather R.</span></div>
+        <div class="color-swatch" data-color="Stone Blue" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_336.jpg" alt="Stone Blue"><span class="swatch-label">Stone Blue</span></div>
+        <div class="color-swatch" data-color="Light Pink" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_420.jpg" alt="Light Pink"><span class="swatch-label">Light Pink</span></div>
+        <div class="color-swatch" data-color="Pistachio" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_505.jpg" alt="Pistachio"><span class="swatch-label">Pistachio</span></div>
+        <div class="color-swatch" data-color="Lime" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_521.jpg" alt="Lime"><span class="swatch-label">Lime</span></div>
+        <div class="color-swatch" data-color="Heather Military Green" data-stock="Alemania" onclick="selectColor(this)"><img src="https://www.falk-ross.eu/out/pictures/0/14_523.jpg" alt="Heather Military Green"><span class="swatch-label">Heather MG</span></div>
       </div>
       <div class="color-selected-info" id="colorInfo">
-        <span style="color:var(--pink);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase">Color seleccionado:</span>
-        <span id="colorName" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.08em;margin-left:0.5rem">Negro</span>
+        <span style="color:var(--pink);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase">Color:</span>
+        <span id="colorName" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.08em;margin-left:0.5rem">Black</span>
+        <span id="colorStock" style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-left:auto;opacity:0.5">Stock España · 24h</span>
       </div>
 
       <p class="base-sublabel" style="margin-top:2rem">// Selecciona una talla</p>
@@ -659,10 +693,11 @@ function renderThumbs() {
 
 // Base selector
 function selectColor(el) {
-  document.querySelectorAll('.color-swatch').forEach(s => { s.classList.remove('active'); s.style.border = '1px solid rgba(255,255,255,0.1)'; });
+  document.querySelectorAll('.color-swatch').forEach(s => { s.classList.remove('active'); });
   el.classList.add('active');
-  el.style.border = '2px solid var(--pink)';
   document.getElementById('colorName').textContent = el.dataset.color;
+  const stock = el.dataset.stock === 'Alemania' ? 'Stock Alemania · 3-5 días' : 'Stock España · 24h';
+  document.getElementById('colorStock').textContent = stock;
 }
 function selectTalla(el) {
   document.querySelectorAll('.talla-btn').forEach(b => b.classList.remove('active'));
