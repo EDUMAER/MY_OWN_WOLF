@@ -163,6 +163,11 @@
   .cta-title strong { color: var(--pink); }
   .cta-sub { margin: 2rem auto 3rem; font-size: 0.75rem; letter-spacing: 0.1em; opacity: 0.45; max-width: 380px; line-height: 1.8; text-transform: uppercase; }
 
+  /* SCROLL TOP */
+  .scroll-top { position: fixed; bottom: 2rem; right: 2rem; z-index: 500; width: 44px; height: 44px; background: transparent; border: 1px solid var(--pink); color: var(--pink); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; opacity: 0; pointer-events: none; transition: opacity 0.3s, background 0.2s, transform 0.2s; }
+  .scroll-top.visible { opacity: 1; pointer-events: all; }
+  .scroll-top:hover { background: var(--pink); color: var(--black); transform: translateY(-3px); }
+
   /* CONTACTO MODAL */
   .contacto-modal { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; padding: 2rem; }
   .contacto-modal.open { display: flex; }
@@ -251,8 +256,8 @@
     </h1>
     <p class="hero-desc">No eres como todos.<br>Tu ropa tampoco debería serlo.<br>Diseña. Imprime. Ruge.</p>
     <div class="hero-btns">
-      <button class="btn-primary">Diseña la tuya</button>
-      <button class="btn-ghost">Ver colección</button>
+      <button class="btn-primary" onclick="abrirContacto()">Diseña la tuya</button>
+      <button class="btn-ghost" onclick="document.getElementById('coleccion').scrollIntoView({behavior:'smooth'})">Ver colección</button>
     </div>
   </div>
   <div class="hero-right">
@@ -576,6 +581,17 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') cambiarFoto(-1);
   if (e.key === 'ArrowRight') cambiarFoto(1);
 });
+
+// Scroll top
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  if (window.scrollY > 400) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+});
 </script>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 </body>
 </html>
