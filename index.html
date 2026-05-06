@@ -116,18 +116,34 @@
 
   /* GALERÍA */
   .galeria { padding: 5rem 3rem; border-top: 1px solid var(--gray2); }
-  .galeria-filters { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-  .filter-btn { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; background: transparent; color: var(--white); border: 1px solid var(--gray2); padding: 0.5rem 1.2rem; cursor: pointer; transition: all 0.2s; }
-  .filter-btn:hover, .filter-btn.active { border-color: var(--pink); color: var(--pink); }
   .galeria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .galeria-item { position: relative; overflow: hidden; cursor: pointer; background: var(--gray); }
   .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
   .galeria-item:hover img { transform: scale(1.04); }
-  .galeria-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
+  .galeria-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 55%); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
   .galeria-item:hover .galeria-item-overlay { opacity: 1; }
   .galeria-cat { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 0.3rem; }
   .galeria-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.05em; }
-  .galeria-item.hidden { display: none; }
+  .galeria-ver { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.5rem; color: var(--white); opacity: 0.6; }
+
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.96); flex-direction: column; }
+  .lightbox.open { display: flex; }
+  .lb-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; border-bottom: 1px solid var(--gray2); flex-shrink: 0; }
+  .lb-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; }
+  .lb-cat { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 0.2rem; }
+  .lb-close { background: none; border: 1px solid var(--gray2); color: var(--white); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; padding: 0.5rem 1rem; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+  .lb-close:hover { border-color: var(--pink); color: var(--pink); }
+  .lb-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem 4rem; position: relative; overflow: hidden; }
+  .lb-main img { max-height: 65vh; max-width: 100%; object-fit: contain; display: block; }
+  .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 1px solid var(--gray2); color: var(--white); font-size: 1.2rem; width: 3rem; height: 3rem; cursor: pointer; transition: border-color 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; }
+  .lb-arrow:hover { border-color: var(--pink); color: var(--pink); }
+  .lb-prev { left: 1rem; }
+  .lb-next { right: 1rem; }
+  .lb-thumbs { display: flex; gap: 0.75rem; padding: 1rem 2rem; overflow-x: auto; border-top: 1px solid var(--gray2); flex-shrink: 0; justify-content: center; }
+  .lb-thumb { width: 70px; height: 70px; object-fit: cover; opacity: 0.4; cursor: pointer; transition: opacity 0.2s, border-color 0.2s; flex-shrink: 0; border: 1px solid transparent; }
+  .lb-thumb:hover { opacity: 0.8; }
+  .lb-thumb.active { opacity: 1; border-color: var(--pink); }
 
   /* INSTAGRAM */
   .instagram { padding: 5rem 3rem; border-top: 1px solid var(--gray2); text-align: center; background: var(--gray); }
@@ -301,99 +317,57 @@
     <h2 class="section-title">Galería de diseños</h2>
     <a href="https://www.instagram.com/my_own_wolf_/" target="_blank" class="section-link">Ver más en IG →</a>
   </div>
-  <div class="galeria-filters">
-    <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
-    <button class="filter-btn" onclick="filtrar('pussy-twin-bros', this)">Pussy Twin Bros</button>
-    <button class="filter-btn" onclick="filtrar('bombareli-crew', this)">Bombareli Crew</button>
-    <button class="filter-btn" onclick="filtrar('pelotudo-extremo', this)">Pelotudo Extremo</button>
-  </div>
   <div class="galeria-grid">
-    <div class="galeria-item" data-cat="pussy-twin-bros">
+
+    <!-- Pussy Twin Bros -->
+    <div class="galeria-item" onclick="abrirLightbox('pussy-twin-bros')">
       <img src="diseno1b.png" alt="Pussy Twin Bros">
       <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pussy Twin Bros</div>
-        <div class="galeria-name">PUSSY TWIN BROTHERS</div>
+        <div class="galeria-cat">Colección</div>
+        <div class="galeria-name">PUSSY TWIN BROS</div>
+        <div class="galeria-ver">Ver todos los diseños →</div>
       </div>
     </div>
-    <div class="galeria-item" data-cat="pussy-twin-bros">
-      <img src="diseno1c.png" alt="Pussy Twin Bros detalle">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pussy Twin Bros</div>
-        <div class="galeria-name">PUSSY TWIN BROTHERS</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="pussy-twin-bros">
-      <img src="diseno1d.png" alt="Pussy Twin Bros detalle espalda">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pussy Twin Bros</div>
-        <div class="galeria-name">TWIN BROTHERS — DETALLE</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="pussy-twin-bros">
-      <img src="diseno1.png" alt="Pussy Twin Bros espalda completa">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pussy Twin Bros</div>
-        <div class="galeria-name">TWIN BROTHERS — ESPALDA</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="bombareli-crew">
+
+    <!-- Bombareli Crew -->
+    <div class="galeria-item" onclick="abrirLightbox('bombareli-crew')">
       <img src="diseno2b.png" alt="Bombareli Crew">
       <div class="galeria-item-overlay">
-        <div class="galeria-cat">Bombareli Crew</div>
+        <div class="galeria-cat">Colección</div>
         <div class="galeria-name">BOMBARELI CREW</div>
+        <div class="galeria-ver">Ver todos los diseños →</div>
       </div>
     </div>
-    <div class="galeria-item" data-cat="bombareli-crew">
-      <img src="diseno2c.png" alt="Bombareli Crew detalle">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Bombareli Crew</div>
-        <div class="galeria-name">BOMBARELI CREW — DETALLE</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="bombareli-crew">
-      <img src="diseno2d.png" alt="Bombareli Crew espalda detalle">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Bombareli Crew</div>
-        <div class="galeria-name">BOMBARELI CREW — ESPALDA</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="bombareli-crew">
-      <img src="diseno2.png" alt="Bombareli Crew espalda completa">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Bombareli Crew</div>
-        <div class="galeria-name">BOMBARELI CREW — COMPLETA</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="pelotudo-extremo">
+
+    <!-- Pelotudo Extremo -->
+    <div class="galeria-item" onclick="abrirLightbox('pelotudo-extremo')">
       <img src="diseno3b.png" alt="Pelotudo Extremo">
       <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pelotudo Extremo</div>
-        <div class="galeria-name">STEVE SANWICHITOS</div>
+        <div class="galeria-cat">Colección</div>
+        <div class="galeria-name">PELOTUDO EXTREMO</div>
+        <div class="galeria-ver">Ver todos los diseños →</div>
       </div>
     </div>
-    <div class="galeria-item" data-cat="pelotudo-extremo">
-      <img src="diseno3c.png" alt="Pelotudo Extremo detalle">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pelotudo Extremo</div>
-        <div class="galeria-name">STEVE SANWICHITOS — DETALLE</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="pelotudo-extremo">
-      <img src="diseno3d.png" alt="Pelotudo Extremo espalda detalle">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pelotudo Extremo</div>
-        <div class="galeria-name">PELOTUDO EXTREMO — ESPALDA</div>
-      </div>
-    </div>
-    <div class="galeria-item" data-cat="pelotudo-extremo">
-      <img src="diseno3.png" alt="Pelotudo Extremo espalda completa">
-      <div class="galeria-item-overlay">
-        <div class="galeria-cat">Pelotudo Extremo</div>
-        <div class="galeria-name">PELOTUDO EXTREMO — COMPLETA</div>
-      </div>
-    </div>
+
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-header">
+    <div>
+      <div class="lb-cat" id="lb-cat"></div>
+      <div class="lb-title" id="lb-title"></div>
+    </div>
+    <button class="lb-close" onclick="cerrarLightbox()">✕ CERRAR</button>
+  </div>
+  <div class="lb-main">
+    <button class="lb-arrow lb-prev" onclick="cambiarFoto(-1)">&#8592;</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-arrow lb-next" onclick="cambiarFoto(1)">&#8594;</button>
+  </div>
+  <div class="lb-thumbs" id="lb-thumbs"></div>
+</div>
 
 <!-- INSTAGRAM -->
 <section class="instagram">
@@ -435,17 +409,70 @@
 
 </body>
 <script>
-function filtrar(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.galeria-item').forEach(item => {
-    if (cat === 'todos' || item.dataset.cat === cat) {
-      item.classList.remove('hidden');
-    } else {
-      item.classList.add('hidden');
-    }
-  });
+const colecciones = {
+  'pussy-twin-bros': {
+    titulo: 'PUSSY TWIN BROS',
+    fotos: ['diseno1b.png','diseno1c.png','diseno1d.png','diseno1.png']
+  },
+  'bombareli-crew': {
+    titulo: 'BOMBARELI CREW',
+    fotos: ['diseno2b.png','diseno2c.png','diseno2d.png','diseno2.png']
+  },
+  'pelotudo-extremo': {
+    titulo: 'PELOTUDO EXTREMO',
+    fotos: ['diseno3b.png','diseno3c.png','diseno3d.png','diseno3.png']
+  }
+};
+
+let fotoActual = 0;
+let fotosActuales = [];
+
+function abrirLightbox(cat) {
+  const col = colecciones[cat];
+  fotosActuales = col.fotos;
+  fotoActual = 0;
+  document.getElementById('lb-cat').textContent = '// Colección';
+  document.getElementById('lb-title').textContent = col.titulo;
+  renderFoto();
+  renderThumbs();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+
+function cerrarLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function cambiarFoto(dir) {
+  fotoActual = (fotoActual + dir + fotosActuales.length) % fotosActuales.length;
+  renderFoto();
+  renderThumbs();
+}
+
+function irFoto(i) {
+  fotoActual = i;
+  renderFoto();
+  renderThumbs();
+}
+
+function renderFoto() {
+  document.getElementById('lb-img').src = fotosActuales[fotoActual];
+}
+
+function renderThumbs() {
+  const cont = document.getElementById('lb-thumbs');
+  cont.innerHTML = fotosActuales.map((f, i) =>
+    `<img src="${f}" class="lb-thumb ${i === fotoActual ? 'active' : ''}" onclick="irFoto(${i})">`
+  ).join('');
+}
+
+// Cerrar con Escape o clic fuera
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') cerrarLightbox();
+  if (e.key === 'ArrowLeft') cambiarFoto(-1);
+  if (e.key === 'ArrowRight') cambiarFoto(1);
+});
 </script>
 </body>
 </html>
