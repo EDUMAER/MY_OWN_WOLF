@@ -174,11 +174,11 @@
   .spec-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); opacity: 0.8; padding-top: 0.1rem; }
   .spec-val { font-size: 0.72rem; line-height: 1.7; opacity: 0.75; }
   .base-sublabel { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pink); margin-bottom: 1rem; }
-  .color-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.5rem; margin-bottom: 2rem; }
-  .color-swatch { aspect-ratio: 1; cursor: pointer; position: relative; border: 2px solid transparent; transition: transform 0.15s, border-color 0.15s; display: flex; align-items: flex-end; justify-content: center; }
-  .color-swatch:hover { transform: scale(1.1); z-index: 10; }
-  .color-swatch.active { border: 2px solid var(--pink) !important; transform: scale(1.1); z-index: 10; }
-  .swatch-label { display: none; position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--black); color: var(--white); border: 1px solid var(--gray2); padding: 0.2rem 0.5rem; font-size: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; pointer-events: none; z-index: 20; }
+  .color-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 0.35rem; margin-bottom: 1rem; }
+  .color-swatch { aspect-ratio: 1; cursor: pointer; position: relative; border: 2px solid transparent; transition: transform 0.15s, border-color 0.15s; }
+  .color-swatch:hover { transform: scale(1.15); z-index: 10; }
+  .color-swatch.active { border: 2px solid var(--pink) !important; transform: scale(1.15); z-index: 10; }
+  .swatch-label { display: none; position: absolute; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--black); color: var(--white); border: 1px solid var(--gray2); padding: 0.2rem 0.5rem; font-size: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; pointer-events: none; z-index: 20; }
   .color-swatch:hover .swatch-label { display: block; }
   .color-selected-info { display: flex; align-items: center; margin-top: 0.8rem; padding: 0.75rem 1rem; background: var(--gray2); }
   .talla-grid { display: flex; gap: 0.6rem; flex-wrap: wrap; }
@@ -405,52 +405,36 @@
 
     <!-- Selector de color -->
     <div class="base-color-wrap">
-      <p class="base-sublabel">// Selecciona un color</p>
-      <p style="font-size:0.6rem;opacity:0.4;letter-spacing:0.08em;margin-bottom:1rem">Stock España: entrega 24h &nbsp;·&nbsp; Stock Alemania: 3-5 días</p>
+      <p class="base-sublabel">// Selecciona un color · Stock España 24h</p>
       <div class="color-grid" id="colorGrid">
-        <div class="color-swatch active" data-color="Black" data-stock="España" onclick="selectColor(this)" style="background:#25282A"><span class="swatch-label">Black</span></div>
-        <div class="color-swatch" data-color="White" data-stock="España" onclick="selectColor(this)" style="background:#FFFFFF;border-color:rgba(255,255,255,0.4)"><span class="swatch-label" style="color:#111;text-shadow:none">White</span></div>
-        <div class="color-swatch" data-color="Navy" data-stock="España" onclick="selectColor(this)" style="background:#263147"><span class="swatch-label">Navy</span></div>
-        <div class="color-swatch" data-color="Royal" data-stock="España" onclick="selectColor(this)" style="background:#224D8F"><span class="swatch-label">Royal</span></div>
-        <div class="color-swatch" data-color="Red" data-stock="España" onclick="selectColor(this)" style="background:#D50032"><span class="swatch-label">Red</span></div>
-        <div class="color-swatch" data-color="Natural" data-stock="España" onclick="selectColor(this)" style="background:#E7CEB5"><span class="swatch-label" style="color:#333;text-shadow:none">Natural</span></div>
-        <div class="color-swatch" data-color="Sport Grey" data-stock="España" onclick="selectColor(this)" style="background:#97999B"><span class="swatch-label">Sport Grey</span></div>
-        <div class="color-swatch" data-color="Dark Heather" data-stock="España" onclick="selectColor(this)" style="background:#425563"><span class="swatch-label">Dark Heather</span></div>
-        <div class="color-swatch" data-color="Charcoal" data-stock="España" onclick="selectColor(this)" style="background:#66676C"><span class="swatch-label">Charcoal</span></div>
-        <div class="color-swatch" data-color="Graphite Heather" data-stock="España" onclick="selectColor(this)" style="background:#707372"><span class="swatch-label">Graphite H.</span></div>
-        <div class="color-swatch" data-color="Indigo Blue" data-stock="España" onclick="selectColor(this)" style="background:#486D87"><span class="swatch-label">Indigo Blue</span></div>
-        <div class="color-swatch" data-color="Light Blue" data-stock="España" onclick="selectColor(this)" style="background:#A4C8E1"><span class="swatch-label" style="color:#333;text-shadow:none">Light Blue</span></div>
-        <div class="color-swatch" data-color="Carolina Blue" data-stock="España" onclick="selectColor(this)" style="background:#7BA4DB"><span class="swatch-label">Carolina B.</span></div>
-        <div class="color-swatch" data-color="Sapphire" data-stock="España" onclick="selectColor(this)" style="background:#0077B5"><span class="swatch-label">Sapphire</span></div>
-        <div class="color-swatch" data-color="Purple" data-stock="España" onclick="selectColor(this)" style="background:#464E7E"><span class="swatch-label">Purple</span></div>
-        <div class="color-swatch" data-color="Cherry Red" data-stock="España" onclick="selectColor(this)" style="background:#AC2B37"><span class="swatch-label">Cherry Red</span></div>
-        <div class="color-swatch" data-color="Cardinal Red" data-stock="España" onclick="selectColor(this)" style="background:#8A1538"><span class="swatch-label">Cardinal R.</span></div>
-        <div class="color-swatch" data-color="Antique Cherry Red" data-stock="España" onclick="selectColor(this)" style="background:#971B2F"><span class="swatch-label">Antique Ch.</span></div>
-        <div class="color-swatch" data-color="Orange" data-stock="España" onclick="selectColor(this)" style="background:#F4633A"><span class="swatch-label">Orange</span></div>
-        <div class="color-swatch" data-color="Azalea" data-stock="España" onclick="selectColor(this)" style="background:#DD74A1"><span class="swatch-label">Azalea</span></div>
-        <div class="color-swatch" data-color="Heliconia" data-stock="España" onclick="selectColor(this)" style="background:#DB3E79"><span class="swatch-label">Heliconia</span></div>
-        <div class="color-swatch" data-color="Maroon" data-stock="España" onclick="selectColor(this)" style="background:#5B2B42"><span class="swatch-label">Maroon</span></div>
-        <div class="color-swatch" data-color="Military Green" data-stock="España" onclick="selectColor(this)" style="background:#5E7461"><span class="swatch-label">Military G.</span></div>
-        <div class="color-swatch" data-color="Irish Green" data-stock="España" onclick="selectColor(this)" style="background:#00A74A"><span class="swatch-label">Irish Green</span></div>
-        <div class="color-swatch" data-color="Mint Green" data-stock="España" onclick="selectColor(this)" style="background:#A0CFA8"><span class="swatch-label" style="color:#333;text-shadow:none">Mint Green</span></div>
-        <div class="color-swatch" data-color="Kiwi" data-stock="España" onclick="selectColor(this)" style="background:#89A84F"><span class="swatch-label">Kiwi</span></div>
-        <div class="color-swatch" data-color="Jade Dome" data-stock="España" onclick="selectColor(this)" style="background:#008E85"><span class="swatch-label">Jade Dome</span></div>
-        <div class="color-swatch" data-color="Forest Green" data-stock="España" onclick="selectColor(this)" style="background:#273B33"><span class="swatch-label">Forest G.</span></div>
-        <div class="color-swatch" data-color="Daisy" data-stock="España" onclick="selectColor(this)" style="background:#FED141"><span class="swatch-label" style="color:#333;text-shadow:none">Daisy</span></div>
-        <div class="color-swatch" data-color="Dark Chocolate" data-stock="España" onclick="selectColor(this)" style="background:#382F2D"><span class="swatch-label">Dark Choc.</span></div>
-        <div class="color-swatch" data-color="Sand" data-stock="España" onclick="selectColor(this)" style="background:#CABFAD"><span class="swatch-label" style="color:#333;text-shadow:none">Sand</span></div>
-        <div class="color-swatch" data-color="Off White" data-stock="Alemania" onclick="selectColor(this)" style="background:#F5F0E8;border-color:rgba(255,255,255,0.3)"><span class="swatch-label" style="color:#333;text-shadow:none">Off White</span></div>
-        <div class="color-swatch" data-color="Heather Navy" data-stock="Alemania" onclick="selectColor(this)" style="background:#333F48"><span class="swatch-label">Heather N.</span></div>
-        <div class="color-swatch" data-color="Tropical Blue" data-stock="Alemania" onclick="selectColor(this)" style="background:#00859B"><span class="swatch-label">Tropical B.</span></div>
-        <div class="color-swatch" data-color="Sky" data-stock="Alemania" onclick="selectColor(this)" style="background:#71C5E8"><span class="swatch-label" style="color:#333;text-shadow:none">Sky</span></div>
-        <div class="color-swatch" data-color="Paragon" data-stock="Alemania" onclick="selectColor(this)" style="background:#1F495B"><span class="swatch-label">Paragon</span></div>
-        <div class="color-swatch" data-color="Antique Sapphire" data-stock="Alemania" onclick="selectColor(this)" style="background:#006A8E"><span class="swatch-label">Antique S.</span></div>
-        <div class="color-swatch" data-color="Heather Royal" data-stock="Alemania" onclick="selectColor(this)" style="background:#307FE2"><span class="swatch-label">Heather R.</span></div>
-        <div class="color-swatch" data-color="Stone Blue" data-stock="Alemania" onclick="selectColor(this)" style="background:#7E93A7"><span class="swatch-label">Stone Blue</span></div>
-        <div class="color-swatch" data-color="Light Pink" data-stock="Alemania" onclick="selectColor(this)" style="background:#E4C6D4"><span class="swatch-label" style="color:#333;text-shadow:none">Light Pink</span></div>
-        <div class="color-swatch" data-color="Pistachio" data-stock="Alemania" onclick="selectColor(this)" style="background:#A9C47F"><span class="swatch-label" style="color:#333;text-shadow:none">Pistachio</span></div>
-        <div class="color-swatch" data-color="Lime" data-stock="Alemania" onclick="selectColor(this)" style="background:#92BF55"><span class="swatch-label" style="color:#333;text-shadow:none">Lime</span></div>
-        <div class="color-swatch" data-color="Heather Military Green" data-stock="Alemania" onclick="selectColor(this)" style="background:#7E7F74"><span class="swatch-label">Heather MG</span></div>
+        <div class="color-swatch active" data-color="Black" onclick="selectColor(this)" style="background:#25282A"><span class="swatch-label">Black</span></div>
+        <div class="color-swatch" data-color="White" onclick="selectColor(this)" style="background:#FFFFFF;border-color:rgba(255,255,255,0.4)"><span class="swatch-label" style="color:#111;text-shadow:none">White</span></div>
+        <div class="color-swatch" data-color="Navy" onclick="selectColor(this)" style="background:#263147"><span class="swatch-label">Navy</span></div>
+        <div class="color-swatch" data-color="Royal" onclick="selectColor(this)" style="background:#224D8F"><span class="swatch-label">Royal</span></div>
+        <div class="color-swatch" data-color="Red" onclick="selectColor(this)" style="background:#D50032"><span class="swatch-label">Red</span></div>
+        <div class="color-swatch" data-color="Natural" onclick="selectColor(this)" style="background:#E7CEB5"><span class="swatch-label" style="color:#333;text-shadow:none">Natural</span></div>
+        <div class="color-swatch" data-color="Sport Grey" onclick="selectColor(this)" style="background:#97999B"><span class="swatch-label">Sport Grey</span></div>
+        <div class="color-swatch" data-color="Dark Heather" onclick="selectColor(this)" style="background:#425563"><span class="swatch-label">Dark Heather</span></div>
+        <div class="color-swatch" data-color="Indigo Blue" onclick="selectColor(this)" style="background:#486D87"><span class="swatch-label">Indigo Blue</span></div>
+        <div class="color-swatch" data-color="Light Blue" onclick="selectColor(this)" style="background:#A4C8E1"><span class="swatch-label" style="color:#333;text-shadow:none">Light Blue</span></div>
+        <div class="color-swatch" data-color="Carolina Blue" onclick="selectColor(this)" style="background:#7BA4DB"><span class="swatch-label">Carolina Blue</span></div>
+        <div class="color-swatch" data-color="Sapphire" onclick="selectColor(this)" style="background:#0077B5"><span class="swatch-label">Sapphire</span></div>
+        <div class="color-swatch" data-color="Purple" onclick="selectColor(this)" style="background:#464E7E"><span class="swatch-label">Purple</span></div>
+        <div class="color-swatch" data-color="Cherry Red" onclick="selectColor(this)" style="background:#AC2B37"><span class="swatch-label">Cherry Red</span></div>
+        <div class="color-swatch" data-color="Cardinal Red" onclick="selectColor(this)" style="background:#8A1538"><span class="swatch-label">Cardinal Red</span></div>
+        <div class="color-swatch" data-color="Antique Cherry Red" onclick="selectColor(this)" style="background:#971B2F"><span class="swatch-label">Antique Cherry</span></div>
+        <div class="color-swatch" data-color="Orange" onclick="selectColor(this)" style="background:#F4633A"><span class="swatch-label">Orange</span></div>
+        <div class="color-swatch" data-color="Azalea" onclick="selectColor(this)" style="background:#DD74A1"><span class="swatch-label">Azalea</span></div>
+        <div class="color-swatch" data-color="Heliconia" onclick="selectColor(this)" style="background:#DB3E79"><span class="swatch-label">Heliconia</span></div>
+        <div class="color-swatch" data-color="Maroon" onclick="selectColor(this)" style="background:#5B2B42"><span class="swatch-label">Maroon</span></div>
+        <div class="color-swatch" data-color="Military Green" onclick="selectColor(this)" style="background:#5E7461"><span class="swatch-label">Military Green</span></div>
+        <div class="color-swatch" data-color="Irish Green" onclick="selectColor(this)" style="background:#00A74A"><span class="swatch-label">Irish Green</span></div>
+        <div class="color-swatch" data-color="Mint Green" onclick="selectColor(this)" style="background:#A0CFA8"><span class="swatch-label" style="color:#333;text-shadow:none">Mint Green</span></div>
+        <div class="color-swatch" data-color="Kiwi" onclick="selectColor(this)" style="background:#89A84F"><span class="swatch-label">Kiwi</span></div>
+        <div class="color-swatch" data-color="Jade Dome" onclick="selectColor(this)" style="background:#008E85"><span class="swatch-label">Jade Dome</span></div>
+        <div class="color-swatch" data-color="Forest Green" onclick="selectColor(this)" style="background:#273B33"><span class="swatch-label">Forest Green</span></div>
+        <div class="color-swatch" data-color="Daisy" onclick="selectColor(this)" style="background:#FED141"><span class="swatch-label" style="color:#333;text-shadow:none">Daisy</span></div>
+        <div class="color-swatch" data-color="Sand" onclick="selectColor(this)" style="background:#CABFAD"><span class="swatch-label" style="color:#333;text-shadow:none">Sand</span></div>
       </div>
       <div class="color-selected-info" id="colorInfo">
         <span style="color:var(--pink);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase">Color:</span>
