@@ -282,7 +282,7 @@
     </h1>
     <p class="hero-desc">No eres como todos.<br>Tu ropa tampoco debería serlo.<br>Diseña. Imprime. Ruge.</p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="abrirContacto()">Diseña la tuya</button>
+      <button class="btn-primary" onclick="abrirBase()">Diseña la tuya</button>
       <button class="btn-ghost" onclick="document.getElementById('coleccion').scrollIntoView({behavior:'smooth'})">Ver colección</button>
     </div>
   </div>
@@ -375,90 +375,89 @@
   </div>
 </section>
 
-<!-- ELIGE TU BASE -->
-<section class="base-selector" id="base">
-  <div class="section-header">
-    <h2 class="section-title">Elige tu base</h2>
-    <a href="https://www.gildan.com/eu/es/64000-camiseta-softstyle-adulto-es_es/" target="_blank" class="section-link">Ver en Gildan →</a>
-  </div>
-  <p style="font-size:0.72rem;opacity:0.5;letter-spacing:0.05em;margin-bottom:2.5rem;line-height:1.8">Trabajamos con la <strong style="color:var(--white);opacity:1">Gildan Softstyle 64000</strong> — una de las bases más usadas en el mundo del streetwear personalizado. Elige tu color y tu talla.</p>
-
-  <div class="base-grid">
-
-    <!-- Ficha producto -->
-    <div class="base-ficha">
-      <div class="base-ficha-header">
-        <p class="base-ref">REF. GILDAN 64000</p>
-        <p class="base-nombre">SOFTSTYLE ADULTO</p>
+<!-- ELIGE TU BASE MODAL -->
+<div class="lightbox" id="base-modal" style="overflow-y:auto">
+  <div style="max-width:1000px;width:100%;margin:auto;padding:2rem;display:flex;flex-direction:column;min-height:100%">
+    <div class="lb-header" style="margin-bottom:2rem">
+      <div>
+        <div class="lb-cat">// Gildan Softstyle 64000</div>
+        <div class="lb-title">ELIGE TU BASE</div>
       </div>
-      <div class="base-specs">
-        <div class="spec-row"><span class="spec-label">Gramaje</span><span class="spec-val">153 g/m² (Blanco: 144 g/m²)</span></div>
-        <div class="spec-row"><span class="spec-label">Composición</span><span class="spec-val">100% algodón ring-spun<br><span style="opacity:0.5;font-size:0.62rem">Gris medio: 90% algodón / 10% poliéster<br>Colores heather: 65% poliéster / 35% algodón</span></span></div>
-        <div class="spec-row"><span class="spec-label">Tejido</span><span class="spec-val">Punto liso pre-encogido · Tubular sin costuras laterales</span></div>
-        <div class="spec-row"><span class="spec-label">Cuello</span><span class="spec-val">Encintado de hombro a hombro · Costuras doble aguja</span></div>
-        <div class="spec-row"><span class="spec-label">Ajuste</span><span class="spec-val">Regular / Unisex</span></div>
-        <div class="spec-row"><span class="spec-label">Etiqueta</span><span class="spec-val">Tear-away (desmontable para rebrandear)</span></div>
-        <div class="spec-row"><span class="spec-label">Certificación</span><span class="spec-val">OEKO-TEX · Better Cotton Initiative</span></div>
-        <div class="spec-row"><span class="spec-label">Tallas</span><span class="spec-val">S · M · L · XL · XXL · 3XL · 4XL · 5XL</span></div>
+      <button class="lb-close" onclick="cerrarBase()">✕ CERRAR</button>
+    </div>
+    <p style="font-size:0.72rem;opacity:0.5;letter-spacing:0.05em;margin-bottom:2rem;line-height:1.8">Trabajamos con la <strong style="color:var(--white);opacity:1">Gildan Softstyle 64000</strong> — una de las bases más usadas en el mundo del streetwear personalizado. Elige tu color y tu talla.</p>
+    <div class="base-grid">
+      <!-- Ficha producto -->
+      <div class="base-ficha">
+        <div class="base-ficha-header">
+          <p class="base-ref">REF. GILDAN 64000</p>
+          <p class="base-nombre">SOFTSTYLE ADULTO</p>
+        </div>
+        <div class="base-specs">
+          <div class="spec-row"><span class="spec-label">Gramaje</span><span class="spec-val">153 g/m² (Blanco: 144 g/m²)</span></div>
+          <div class="spec-row"><span class="spec-label">Composición</span><span class="spec-val">100% algodón ring-spun<br><span style="opacity:0.5;font-size:0.62rem">Gris medio: 90% algodón / 10% poliéster<br>Colores heather: 65% poliéster / 35% algodón</span></span></div>
+          <div class="spec-row"><span class="spec-label">Tejido</span><span class="spec-val">Punto liso pre-encogido · Tubular sin costuras laterales</span></div>
+          <div class="spec-row"><span class="spec-label">Cuello</span><span class="spec-val">Encintado de hombro a hombro · Costuras doble aguja</span></div>
+          <div class="spec-row"><span class="spec-label">Ajuste</span><span class="spec-val">Regular / Unisex</span></div>
+          <div class="spec-row"><span class="spec-label">Etiqueta</span><span class="spec-val">Tear-away (desmontable para rebrandear)</span></div>
+          <div class="spec-row"><span class="spec-label">Certificación</span><span class="spec-val">OEKO-TEX · Better Cotton Initiative</span></div>
+          <div class="spec-row"><span class="spec-label">Tallas</span><span class="spec-val">S · M · L · XL · XXL · 3XL · 4XL · 5XL</span></div>
+        </div>
+      </div>
+      <!-- Selector de color -->
+      <div class="base-color-wrap">
+        <p class="base-sublabel">// Selecciona un color · Stock España 24h</p>
+        <div class="color-grid" id="colorGrid">
+          <div class="color-swatch active" data-color="Black" onclick="selectColor(this)" style="background:#25282A"><span class="swatch-label">Black</span></div>
+          <div class="color-swatch" data-color="White" onclick="selectColor(this)" style="background:#FFFFFF;border-color:rgba(255,255,255,0.4)"><span class="swatch-label" style="color:#111;text-shadow:none">White</span></div>
+          <div class="color-swatch" data-color="Navy" onclick="selectColor(this)" style="background:#263147"><span class="swatch-label">Navy</span></div>
+          <div class="color-swatch" data-color="Royal" onclick="selectColor(this)" style="background:#224D8F"><span class="swatch-label">Royal</span></div>
+          <div class="color-swatch" data-color="Red" onclick="selectColor(this)" style="background:#D50032"><span class="swatch-label">Red</span></div>
+          <div class="color-swatch" data-color="Natural" onclick="selectColor(this)" style="background:#E7CEB5"><span class="swatch-label" style="color:#333;text-shadow:none">Natural</span></div>
+          <div class="color-swatch" data-color="Sport Grey" onclick="selectColor(this)" style="background:#97999B"><span class="swatch-label">Sport Grey</span></div>
+          <div class="color-swatch" data-color="Dark Heather" onclick="selectColor(this)" style="background:#425563"><span class="swatch-label">Dark Heather</span></div>
+          <div class="color-swatch" data-color="Indigo Blue" onclick="selectColor(this)" style="background:#486D87"><span class="swatch-label">Indigo Blue</span></div>
+          <div class="color-swatch" data-color="Light Blue" onclick="selectColor(this)" style="background:#A4C8E1"><span class="swatch-label" style="color:#333;text-shadow:none">Light Blue</span></div>
+          <div class="color-swatch" data-color="Carolina Blue" onclick="selectColor(this)" style="background:#7BA4DB"><span class="swatch-label">Carolina Blue</span></div>
+          <div class="color-swatch" data-color="Sapphire" onclick="selectColor(this)" style="background:#0077B5"><span class="swatch-label">Sapphire</span></div>
+          <div class="color-swatch" data-color="Purple" onclick="selectColor(this)" style="background:#464E7E"><span class="swatch-label">Purple</span></div>
+          <div class="color-swatch" data-color="Cherry Red" onclick="selectColor(this)" style="background:#AC2B37"><span class="swatch-label">Cherry Red</span></div>
+          <div class="color-swatch" data-color="Cardinal Red" onclick="selectColor(this)" style="background:#8A1538"><span class="swatch-label">Cardinal Red</span></div>
+          <div class="color-swatch" data-color="Antique Cherry Red" onclick="selectColor(this)" style="background:#971B2F"><span class="swatch-label">Antique Cherry</span></div>
+          <div class="color-swatch" data-color="Orange" onclick="selectColor(this)" style="background:#F4633A"><span class="swatch-label">Orange</span></div>
+          <div class="color-swatch" data-color="Azalea" onclick="selectColor(this)" style="background:#DD74A1"><span class="swatch-label">Azalea</span></div>
+          <div class="color-swatch" data-color="Heliconia" onclick="selectColor(this)" style="background:#DB3E79"><span class="swatch-label">Heliconia</span></div>
+          <div class="color-swatch" data-color="Maroon" onclick="selectColor(this)" style="background:#5B2B42"><span class="swatch-label">Maroon</span></div>
+          <div class="color-swatch" data-color="Military Green" onclick="selectColor(this)" style="background:#5E7461"><span class="swatch-label">Military Green</span></div>
+          <div class="color-swatch" data-color="Irish Green" onclick="selectColor(this)" style="background:#00A74A"><span class="swatch-label">Irish Green</span></div>
+          <div class="color-swatch" data-color="Mint Green" onclick="selectColor(this)" style="background:#A0CFA8"><span class="swatch-label" style="color:#333;text-shadow:none">Mint Green</span></div>
+          <div class="color-swatch" data-color="Kiwi" onclick="selectColor(this)" style="background:#89A84F"><span class="swatch-label">Kiwi</span></div>
+          <div class="color-swatch" data-color="Jade Dome" onclick="selectColor(this)" style="background:#008E85"><span class="swatch-label">Jade Dome</span></div>
+          <div class="color-swatch" data-color="Forest Green" onclick="selectColor(this)" style="background:#273B33"><span class="swatch-label">Forest Green</span></div>
+          <div class="color-swatch" data-color="Daisy" onclick="selectColor(this)" style="background:#FED141"><span class="swatch-label" style="color:#333;text-shadow:none">Daisy</span></div>
+          <div class="color-swatch" data-color="Sand" onclick="selectColor(this)" style="background:#CABFAD"><span class="swatch-label" style="color:#333;text-shadow:none">Sand</span></div>
+        </div>
+        <div class="color-selected-info" id="colorInfo">
+          <span style="color:var(--pink);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase">Color:</span>
+          <span id="colorName" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.08em;margin-left:0.5rem">Black</span>
+          <span id="colorStock" style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-left:auto;opacity:0.5">Stock España · 24h</span>
+        </div>
+        <p class="base-sublabel" style="margin-top:2rem">// Selecciona una talla</p>
+        <div class="talla-grid" id="tallaGrid">
+          <div class="talla-btn active" onclick="selectTalla(this)">S</div>
+          <div class="talla-btn" onclick="selectTalla(this)">M</div>
+          <div class="talla-btn" onclick="selectTalla(this)">L</div>
+          <div class="talla-btn" onclick="selectTalla(this)">XL</div>
+          <div class="talla-btn" onclick="selectTalla(this)">XXL</div>
+          <div class="talla-btn" onclick="selectTalla(this)">3XL</div>
+          <div class="talla-btn" onclick="selectTalla(this)">4XL</div>
+          <div class="talla-btn" onclick="selectTalla(this)">5XL</div>
+        </div>
+        <button class="btn-primary" style="margin-top:2rem;width:100%;font-size:0.72rem" onclick="pedirBase()">Pedir con este color y talla</button>
       </div>
     </div>
-
-    <!-- Selector de color -->
-    <div class="base-color-wrap">
-      <p class="base-sublabel">// Selecciona un color · Stock España 24h</p>
-      <div class="color-grid" id="colorGrid">
-        <div class="color-swatch active" data-color="Black" onclick="selectColor(this)" style="background:#25282A"><span class="swatch-label">Black</span></div>
-        <div class="color-swatch" data-color="White" onclick="selectColor(this)" style="background:#FFFFFF;border-color:rgba(255,255,255,0.4)"><span class="swatch-label" style="color:#111;text-shadow:none">White</span></div>
-        <div class="color-swatch" data-color="Navy" onclick="selectColor(this)" style="background:#263147"><span class="swatch-label">Navy</span></div>
-        <div class="color-swatch" data-color="Royal" onclick="selectColor(this)" style="background:#224D8F"><span class="swatch-label">Royal</span></div>
-        <div class="color-swatch" data-color="Red" onclick="selectColor(this)" style="background:#D50032"><span class="swatch-label">Red</span></div>
-        <div class="color-swatch" data-color="Natural" onclick="selectColor(this)" style="background:#E7CEB5"><span class="swatch-label" style="color:#333;text-shadow:none">Natural</span></div>
-        <div class="color-swatch" data-color="Sport Grey" onclick="selectColor(this)" style="background:#97999B"><span class="swatch-label">Sport Grey</span></div>
-        <div class="color-swatch" data-color="Dark Heather" onclick="selectColor(this)" style="background:#425563"><span class="swatch-label">Dark Heather</span></div>
-        <div class="color-swatch" data-color="Indigo Blue" onclick="selectColor(this)" style="background:#486D87"><span class="swatch-label">Indigo Blue</span></div>
-        <div class="color-swatch" data-color="Light Blue" onclick="selectColor(this)" style="background:#A4C8E1"><span class="swatch-label" style="color:#333;text-shadow:none">Light Blue</span></div>
-        <div class="color-swatch" data-color="Carolina Blue" onclick="selectColor(this)" style="background:#7BA4DB"><span class="swatch-label">Carolina Blue</span></div>
-        <div class="color-swatch" data-color="Sapphire" onclick="selectColor(this)" style="background:#0077B5"><span class="swatch-label">Sapphire</span></div>
-        <div class="color-swatch" data-color="Purple" onclick="selectColor(this)" style="background:#464E7E"><span class="swatch-label">Purple</span></div>
-        <div class="color-swatch" data-color="Cherry Red" onclick="selectColor(this)" style="background:#AC2B37"><span class="swatch-label">Cherry Red</span></div>
-        <div class="color-swatch" data-color="Cardinal Red" onclick="selectColor(this)" style="background:#8A1538"><span class="swatch-label">Cardinal Red</span></div>
-        <div class="color-swatch" data-color="Antique Cherry Red" onclick="selectColor(this)" style="background:#971B2F"><span class="swatch-label">Antique Cherry</span></div>
-        <div class="color-swatch" data-color="Orange" onclick="selectColor(this)" style="background:#F4633A"><span class="swatch-label">Orange</span></div>
-        <div class="color-swatch" data-color="Azalea" onclick="selectColor(this)" style="background:#DD74A1"><span class="swatch-label">Azalea</span></div>
-        <div class="color-swatch" data-color="Heliconia" onclick="selectColor(this)" style="background:#DB3E79"><span class="swatch-label">Heliconia</span></div>
-        <div class="color-swatch" data-color="Maroon" onclick="selectColor(this)" style="background:#5B2B42"><span class="swatch-label">Maroon</span></div>
-        <div class="color-swatch" data-color="Military Green" onclick="selectColor(this)" style="background:#5E7461"><span class="swatch-label">Military Green</span></div>
-        <div class="color-swatch" data-color="Irish Green" onclick="selectColor(this)" style="background:#00A74A"><span class="swatch-label">Irish Green</span></div>
-        <div class="color-swatch" data-color="Mint Green" onclick="selectColor(this)" style="background:#A0CFA8"><span class="swatch-label" style="color:#333;text-shadow:none">Mint Green</span></div>
-        <div class="color-swatch" data-color="Kiwi" onclick="selectColor(this)" style="background:#89A84F"><span class="swatch-label">Kiwi</span></div>
-        <div class="color-swatch" data-color="Jade Dome" onclick="selectColor(this)" style="background:#008E85"><span class="swatch-label">Jade Dome</span></div>
-        <div class="color-swatch" data-color="Forest Green" onclick="selectColor(this)" style="background:#273B33"><span class="swatch-label">Forest Green</span></div>
-        <div class="color-swatch" data-color="Daisy" onclick="selectColor(this)" style="background:#FED141"><span class="swatch-label" style="color:#333;text-shadow:none">Daisy</span></div>
-        <div class="color-swatch" data-color="Sand" onclick="selectColor(this)" style="background:#CABFAD"><span class="swatch-label" style="color:#333;text-shadow:none">Sand</span></div>
-      </div>
-      <div class="color-selected-info" id="colorInfo">
-        <span style="color:var(--pink);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase">Color:</span>
-        <span id="colorName" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.08em;margin-left:0.5rem">Black</span>
-        <span id="colorStock" style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-left:auto;opacity:0.5">Stock España · 24h</span>
-      </div>
-
-      <p class="base-sublabel" style="margin-top:2rem">// Selecciona una talla</p>
-      <div class="talla-grid" id="tallaGrid">
-        <div class="talla-btn active" onclick="selectTalla(this)">S</div>
-        <div class="talla-btn" onclick="selectTalla(this)">M</div>
-        <div class="talla-btn" onclick="selectTalla(this)">L</div>
-        <div class="talla-btn" onclick="selectTalla(this)">XL</div>
-        <div class="talla-btn" onclick="selectTalla(this)">XXL</div>
-        <div class="talla-btn" onclick="selectTalla(this)">3XL</div>
-        <div class="talla-btn" onclick="selectTalla(this)">4XL</div>
-        <div class="talla-btn" onclick="selectTalla(this)">5XL</div>
-      </div>
-
-      <button class="btn-primary" style="margin-top:2rem;width:100%;font-size:0.72rem" onclick="pedirBase()">Pedir con este color y talla</button>
-    </div>
-
   </div>
-</section>
+</div>
 
 <!-- GALERÍA -->
 <section class="galeria" id="coleccion">
@@ -697,6 +696,16 @@ function pedirBase() {
   }
 }
 
+// Modal base
+function abrirBase() {
+  document.getElementById('base-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function cerrarBase() {
+  document.getElementById('base-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 // Modal contacto
 function abrirContacto() {
   document.getElementById('contacto-modal').classList.add('open');
@@ -748,6 +757,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     cerrarLightbox();
     cerrarContacto();
+    cerrarBase();
   }
   if (e.key === 'ArrowLeft') cambiarFoto(-1);
   if (e.key === 'ArrowRight') cambiarFoto(1);
